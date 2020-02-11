@@ -57,3 +57,19 @@ fun Canvas.drawHRABNode(i : Int, scale : Float, paint : Paint) {
     drawBouncyRotArcs(scale, size, paint)
     restore()
 }
+
+class HexRotArcBouncyView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
+}
