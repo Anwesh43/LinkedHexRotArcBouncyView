@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/LinkedHexRotArcBouncyView.iml" filepath="$PROJECT_DIR$/LinkedHexRotArcBouncyView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hexrotarcbouncyview/hexrotarcbouncyview.iml" filepath="$PROJECT_DIR$/hexrotarcbouncyview/hexrotarcbouncyview.iml" />
+    </modules>
+  </component>
+</project>
