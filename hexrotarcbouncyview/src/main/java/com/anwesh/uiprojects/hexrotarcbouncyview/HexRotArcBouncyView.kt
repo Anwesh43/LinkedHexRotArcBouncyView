@@ -26,3 +26,34 @@ fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
 fun Float.sinify() : Float = Math.sin(this * Math.PI).toFloat()
 
+fun Canvas.drawBouncyRotArc(i : Int, scale : Float, size : Float, paint : Paint) {
+    val deg : Float = 360f / arcs
+    val sf : Float = scale.sinify().divideScale(i, arcs)
+    save()
+    rotate(deg * i + deg * sf)
+    drawArc(RectF(-size, -size, size, size), -deg / 4, (deg / 2), false, paint)
+    restore()
+}
+
+fun Canvas.drawBouncyRotArcs(scale : Float, size : Float, paint : Paint) {
+    val scDiv : Double = 1.0 / arcs
+    val k : Int = Math.floor(scale.sinify() / scDiv).toInt()
+    for (j in 0..k) {
+        drawBouncyRotArc(j, scale, size, paint)
+    }
+}
+
+fun Canvas.drawHRABNode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    val gap : Float = h / (nodes + 1)
+    paint.style = Paint.Style.STROKE
+    paint.color = foreColor
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    val size : Float = gap / sizeFactor
+    save()
+    translate(w / 2, gap * (i + 1))
+    drawBouncyRotArcs(scale, size, paint)
+    restore()
+}
