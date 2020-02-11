@@ -212,4 +212,13 @@ class HexRotArcBouncyView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : HexRotArcBouncyView {
+            val view : HexRotArcBouncyView = HexRotArcBouncyView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
