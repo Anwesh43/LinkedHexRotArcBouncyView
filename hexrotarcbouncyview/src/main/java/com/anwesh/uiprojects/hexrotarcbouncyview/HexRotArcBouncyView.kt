@@ -121,4 +121,46 @@ class HexRotArcBouncyView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class HRABNode(var i : Int, val state : State = State()) {
+
+        private var next : HRABNode? = null
+        private var prev : HRABNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < nodes - 1) {
+                next = HRABNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawHRABNode(i, state.scale, paint)
+            next?.draw(canvas, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : HRABNode {
+            var curr : HRABNode? = next
+            if (dir == -1) {
+                curr = prev
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
