@@ -187,4 +187,26 @@ class HexRotArcBouncyView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : HexRotArcBouncyView) {
+
+        private val animator : Animator = Animator(view)
+        private val hrab : HexBouncyRotArc = HexBouncyRotArc(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            hrab.draw(canvas, paint)
+            animator.animate {
+                hrab.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            hrab.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
